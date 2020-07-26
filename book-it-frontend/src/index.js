@@ -1,6 +1,27 @@
+let currentUser = {};
+
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("comments").addEventListener("click", toggleComments);
-    document.getElementById("close").addEventListener("click", toggleComments)
+    comments.addEventListener("click", toggleComments);
+    closeComments.addEventListener("click", toggleComments);
+
+
+    newUser.addEventListener("click", () => {
+        const userFormContainer = document.getElementById("userForm")
+        const topSectionContainer = document.getElementById("top")
+        
+        if (userFormContainer.style.display === "none") {
+          userFormContainer.style.display = "block";
+          topSectionContainer.style.display = "none";
+        } else {
+          userFormContainer.style.display = "none";
+          topSectionContainer.style.display = "block"
+        }
+    });
+
+    document.getElementById("submitNewUser").addEventListener("click", function(event){
+        event.preventDefault();
+        assembleCurrentUser();
+    });
 });
 
 function toggleComments() {
@@ -15,6 +36,18 @@ function toggleComments() {
         booksDiv.style.display = "block";
     }
 }
+
+function assembleCurrentUser() {
+    currentUser.username = document.getElementById('username').value
+    currentUser.email = document.getElementById('email').value
+    currentUser.grade  = document.getElementById('grade').value
+
+    document.getElementById("interName").innerHTML = currentUser.username;
+
+    document.getElementById("userForm").style.display = "none";
+    document.getElementById("top").style.display = "block";
+ }
+
 
 
 

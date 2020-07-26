@@ -98,18 +98,30 @@
 
   <main role="main">
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1>Hi there!</h1>
+    <section id="top" class="jumbotron text-center">
+      <div id="top section" class="container">
+        <h1>Hi there <span id = interName>name</span>!</h1>
         <p class="lead text-muted">Know of a good studying resource/test-prep book? Share it for others to see by
           booking-it here. Happy studying!</p>
         <p>
-          <a href="#" class="btn btn-warning my-2">Enter Username to Add Book</a>
-          <a href="#" class="btn btn-secondary my-2">Book-It</a>
-          <button class="btn btn-secondary my-2" type="submit" >Submit</button>
+          <a href="#" id="newUser" class="btn btn-warning my-2">New User</a>
+          <a href="#" class="btn btn-warning my-2">Add Book</a>
+          <!--<button class="btn btn-secondary my-2" type="submit" >Submit</button>-->
         </p>
       </div>
     </section>
+
+        <div id="userForm" class="container" style="display: none;">
+          <form>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="email">E-mail:</label><br>
+            <input type="email" id="email" name="email"><br>
+            <label for="grade">Grade:</label><br>
+            <input type="grade" id="grade" name="grade"><br><br>
+            <input type="submit" value="Submit" id="submitNewUser">
+          </form>
+        </div>
 
     <div class="album py-5 bg-light">
       <div class="container">
@@ -155,7 +167,7 @@
                 </p>
               </div>
               <small class="d-block text-right mt-3">
-                <a id="close" href="#">Close</a>
+                <a id="closeComments" href="#">Close</a>
               </small>
             </div>
           </div>
