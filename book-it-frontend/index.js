@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchBooks();
 
   //COMMENTS
-  comments.addEventListener("click", toggleComments);
+  //comments.addEventListener("click", toggleComments);
   closeComments.addEventListener("click", toggleComments);
 
   //USER
@@ -89,8 +89,12 @@ document.addEventListener("DOMContentLoaded", () => {
       publisher: publisher, 
       subject: subject,
       review: review, 
-      rating: rating
+      rating: rating,
+      poster_username: currentUser.username,
+      poster_email: currentUser.email,
+      poster_grade: currentUser.grade
     }
+
 
     let configObj = {
       method: "POST",
@@ -103,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetch("http://localhost:3000/books", configObj)
     .then(resp => (resp.json()))
-    .then(book => {let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating)
+    .then(book => {let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating, book.poster_username, book.poster_email, book.poster_grade )
       b.renderBook();
     })
   }
@@ -114,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(resp => resp.json())
       .then(books => {
         for(const book of books) {
-          let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating);
+          let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating, book.poster_username, book.poster_email, book.poster_grade);
           b.renderBook();
         }
       })

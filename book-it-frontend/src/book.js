@@ -1,19 +1,29 @@
 class Book {
-    constructor (id, title, author, publisher, subject, review, rating){
+    constructor (id, title, author, publisher, subject, review, rating, poster_username, poster_email, poster_grade){
         this.id = id;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.subject = subject;
         this.review = review;
-        this.rating = rating
+        this.rating = rating;
+        this.poster_username = poster_username;
+        this.poster_email = poster_email;
+        this.poster_grade = poster_grade
     }
 
     renderBook() {
+        
+
         this.template = this.template.replace("TITLE", this.title);
         this.template = this.template.replace("AUTHOR", this.author);
         this.template = this.template.replace("REVIEW", this.review);
         this.template = this.template.replace("RATING", this.rating);
+
+        this.template = this.template.replace("USERNAME", this.poster_username); // 
+        this.template = this.template.replace("EMAIL", this.poster_email); // 
+        this.template = this.template.replace("GRADE", this.poster_grade); // 
+
         document.getElementById("books").innerHTML += this.template;
 
         document.getElementById("bookForm").style.display = "none";
