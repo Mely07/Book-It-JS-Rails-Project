@@ -68,6 +68,7 @@
   </style>
   <script type="text/javascript" src="index.js"></script>
   <script type="text/javascript" src="src/book.js"></script>
+  <script type="text/javascript" src="src/comment.js"></script>
 </head>
 
 <body>
@@ -106,8 +107,7 @@
           booking-it here. Happy studying!</p>
         <p>
           <a href="#" id="newUser" class="btn btn-warning my-2">New User</a>
-          
-          <a href="#" id="newBook" class="btn btn-warning my-2">Add Book</a>
+          <a href="#" id="newBook" class="btn btn-warning my-2" hidden>Add Book</a>
           <!--<button class="btn btn-secondary my-2" type="submit" >Submit</button>-->
         </p>
       </div>
@@ -143,23 +143,30 @@
       </form>
     </div>
 
+    <div id="commentForm" class="container" style="display: none;">
+      <form>
+        <label for="body">Comment here:</label><br>
+        <input type="text" id="body" name="body"><br>
+        <input type="submit" value="Submit" id="submitNewComment">
+      </form>
+    </div>
+
     <div class="album py-5 bg-light">
       <div class="container">
         <div id="books" class="row">
         </div>
         <div id="bookComments" class="row" style="display: none;">
-          <div class="col-md-12">
-            <div class="p-3 bg-white rounded shadow-sm">
-              <h6 class="border-bottom border-gray pb-2 mb-0">Comments</h6>
-              <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <strong class="d-block text-gray-dark">@username</strong>
-                  I agree! Absolutely loved this book. Offers a thorough explanation on the Math concepts covered in
-                  test.
-                </p>
+          <div class='col-md-12'>
+            <div class='p-3 bg-white rounded shadow-sm'>
+              <h6 class='border-bottom border-gray pb-2 mb-0'>Comments</h6>
+              <div id="commentsList">
+                
               </div>
-              <small class="d-block text-right mt-3">
-                <a id="closeComments" href="#">Close</a>
+              <small class='d-block text-right mt-3'>
+                <a href='#' onclick='newComment()'>Add Comment</a>
+              </small>
+              <small class='d-block text-right mt-3'>
+                <a id='closeComments' href='#'>Close</a>
               </small>
             </div>
           </div>

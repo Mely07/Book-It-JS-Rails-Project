@@ -1,11 +1,8 @@
 let currentUser = {};
+let currentBookId;
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchBooks();
-
-  //COMMENTS
-  //comments.addEventListener("click", toggleComments); //many comments buttons now 
-  closeComments.addEventListener("click", toggleComments);
 
   //USER
   newUser.addEventListener("click", () => {
@@ -47,33 +44,87 @@ document.addEventListener("DOMContentLoaded", () => {
     createNewBook();
   });
 
-});
+  //COMMENT
+  document.getElementById("submitNewComment").addEventListener("click", function (event) {
+    event.preventDefault();
+    createNewComment();
+  });
+});  
 
 //COMMENT
-function toggleComments() {
+function newComment() {
+  const commentFormContainer = document.getElementById("commentForm")
+  const topSectionContainer = document.getElementById("top")
+
+  if (commentFormContainer.style.display === "none") {
+    commentFormContainer.style.display = "block";
+    topSectionContainer.style.display = "none";
+  } else {
+    commentFormContainer.style.display = "none";
+    topSectionContainer.style.display = "block"
+  }
+}
+
+//COMMENT
+function createNewComment() {
+  const body= document.getElementById('body').value
+  const username = currentUser.username
+  const book_id = currentBookId
+
+  let comment = {
+    body: body,
+    username: username,
+    book_id: book_id
+  }
+
+  let configObj = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(comment)
+  }
+
+  fetch("http://localhost:3000/books/" + currentBookId + "/comments", configObj)
+  
+    .then(resp => (resp.json()))
+    .then(comment => {
+      //.log(comment)
+      let c = new Comment(comment.id, comment.body, comment.book_id, comment.username)
+      c.renderComment();
+    })
+}
+
+//COMMENT
+function toggleComments(id) {
+
+  currentBookId = id
+
   const commentsDiv = document.getElementById("bookComments");
   const booksDiv = document.getElementById("books");
 
   if (commentsDiv.style.display === "none") {
-    commentsDiv.style.display = "block";
     booksDiv.style.display = "none";
+    commentsDiv.style.display = "block";
   } else {
     commentsDiv.style.display = "none";
     booksDiv.style.display = "block";
   }
-  // fetch comments and display them
+
+  fetchComments(id);
 }
 
-//USER
-function assembleCurrentUser() {
-  currentUser.username = document.getElementById('username').value
-  currentUser.email = document.getElementById('email').value
-  currentUser.grade = document.getElementById('grade').value
-
-  document.getElementById("interName").innerHTML = currentUser.username;
-
-  document.getElementById("userForm").style.display = "none";
-  document.getElementById("top").style.display = "block";
+//COMMENT
+function fetchComments(id) {
+  fetch("http://localhost:3000/books/" + id + "/comments")
+    .then(resp => resp.json())
+    .then(comments => {
+      for (const comment of comments) {
+        let c = new Comment(comment.id, comment.body, comment.book_id, comment.username);
+        c.renderComment();
+      }
+    })
 }
 
 //BOOK
@@ -151,4 +202,14 @@ function likeBook(id) {
     })
 }
 
+//USER
+function assembleCurrentUser() {
+  currentUser.username = document.getElementById('username').value
+  currentUser.email = document.getElementById('email').value
+  currentUser.grade = document.getElementById('grade').value
 
+  document.getElementById("interName").innerHTML = currentUser.username;
+
+  document.getElementById("userForm").style.display = "none";
+  document.getElementById("top").style.display = "block";
+}

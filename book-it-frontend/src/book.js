@@ -19,7 +19,7 @@ class Book {
         this.template = this.template.replace("REVIEW", this.review);
         this.template = this.template.replace("RATING", this.rating);
         this.template = this.template.replace("LIKES", this.likes);
-        this.template = this.template.replace("BOOKID", this.id);
+        this.template = this.template.replace(/BOOKID/g, this.id);
         
         this.template = this.template.replace("USERNAME", this.poster_username); 
         this.template = this.template.replace("EMAIL", this.poster_email); 
@@ -48,7 +48,7 @@ class Book {
     "      <div class='text-muted mb-2'>Posted by: USERNAME, EMAIL, GRADE</div>"+
     "      <div class='d-flex justify-content-between align-items-center mt-2'>"+
     "        <div>"+
-    "          <button id='comments' type='button' class='btn btn-sm btn-outline-secondary'>Comments</button>"+
+    "          <button id='comments' type='button' class='btn btn-sm btn-outline-secondary'onclick='toggleComments(BOOKID)'>Comments</button>"+
     "        </div>"+
     "        <div class='text-right'>LIKES <svg width='1em' height='1em' viewBox='0 0 16 16' class='bi bi-heart' fill='currentColor' onclick='likeBook(BOOKID)'"+
     "          xmlns='http://www.w3.org/2000/svg'>"+
