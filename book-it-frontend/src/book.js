@@ -1,5 +1,5 @@
 class Book {
-    constructor (id, title, author, publisher, subject, review, rating, poster_username, poster_email, poster_grade, likes){
+    constructor (id, title, author, publisher, subject, review, rating, poster_username, poster_email, poster_grade, likes, image){
         this.id = id;
         this.title = title;
         this.author = author;
@@ -11,6 +11,7 @@ class Book {
         this.poster_email = poster_email;
         this.poster_grade = poster_grade;
         this.likes = likes;
+        this.image = image;
     }
 
     renderBook() {
@@ -20,6 +21,7 @@ class Book {
         this.template = this.template.replace("RATING", this.rating);
         this.template = this.template.replace("LIKES", this.likes);
         this.template = this.template.replace(/BOOKID/g, this.id);
+        this.template = this.template.replace("IMAGE", this.image );
         
         this.template = this.template.replace("USERNAME", this.poster_username); 
         this.template = this.template.replace("EMAIL", this.poster_email); 
@@ -34,18 +36,17 @@ class Book {
     template =
     "<div class='col-md-4'>"+
     "  <div class='card mb-4 shadow-sm'>"+
-    "    <svg class='bd-placeholder-img card-img-top' width='100%' height='225' xmlns='http://www.w3.org/2000/svg'"+
-    "      preserveAspectRatio='xMidYMid slice' focusable='false' role='img' aria-label='Placeholder: Thumbnail'>"+
-    "     <title>Placeholder</title>"+
-    "      <rect width='100%' height='100%' fill='#55595c' /><text x='50%' y='50%' fill='#eceeef'"+
-    "        dy='.3em'>Thumbnail</text>"+
-    "    </svg>"+
+
+    "<img class='card-img-top'  style='height:" +
+    "225px; width: 100%; display: block;' src='IMAGE' data-holder-rendered='true'></img>" +
+  // "<img IMAGE class='card-img-top' alt='Responsive image'>"+
+  
     "    <div class='card-body'>"+
     "      <strong class='d-inline-block mb-2 text-primary'>AUTHOR</strong>"+
     "      <h3 class='mb-0'>TITLE</h3>"+
-    "      <div class='text-muted'>RATING</div>"+
+    "      <div class='text-muted'>Rating: RATING/5</div>"+
     "      <p class='card-text mb-1 mt-3'>REVIEW</p>"+
-    "      <div class='text-muted mb-2'>Posted by: USERNAME, EMAIL, GRADE</div>"+
+    "      <div class='text-muted mb-2'>Posted by: USERNAME, EMAIL, GRADE grade</div>"+
     "      <div class='d-flex justify-content-between align-items-center mt-2'>"+
     "        <div>"+
     "          <button id='comments' type='button' class='btn btn-sm btn-outline-secondary'onclick='toggleComments(BOOKID)'>Comments</button>"+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_29_165910) do
+ActiveRecord::Schema.define(version: 2020_08_01_035034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_07_29_165910) do
     t.string "poster_email"
     t.string "poster_grade"
     t.integer "likes"
+    t.text "image"
   end
 
   create_table "comments", force: :cascade do |t|

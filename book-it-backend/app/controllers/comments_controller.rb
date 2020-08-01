@@ -4,7 +4,10 @@ class CommentsController < ApplicationController
   # GET /comments
   def index
     if params[:book_id]
-      @comments = Book.find(params[:book_id]).comments
+      if Book.find_by(id: params[:book_id])
+      @comments = Book.find_by(id: params[:book_id]).comments
+      # else
+      end
     else
       @comments = Comment.all
     end

@@ -49,6 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     createNewComment();
   });
+
+  //COMMENT
+  document.getElementById("closeComments").addEventListener("click", closeAllComments)
 });  
 
 //COMMENT
@@ -64,6 +67,7 @@ function newComment() {
     topSectionContainer.style.display = "block"
   }
 }
+
 
 //COMMENT
 function createNewComment() {
@@ -98,28 +102,34 @@ function createNewComment() {
 
 //COMMENT
 function toggleComments(id) {
-
   currentBookId = id
 
+  closeAllComments();
+ 
+  fetchComments(id);
+}
+
+//COMMENT
+function closeAllComments() {
   const commentsDiv = document.getElementById("bookComments");
   const booksDiv = document.getElementById("books");
 
   if (commentsDiv.style.display === "none") {
     booksDiv.style.display = "none";
-    commentsDiv.style.display = "block";
+    commentsDiv.style.display = "";
   } else {
     commentsDiv.style.display = "none";
-    booksDiv.style.display = "block";
+    booksDiv.style.display = "";
   }
-
-  fetchComments(id);
 }
+
 
 //COMMENT
 function fetchComments(id) {
   fetch("http://localhost:3000/books/" + id + "/comments")
     .then(resp => resp.json())
     .then(comments => {
+      console.log(comments)
       for (const comment of comments) {
         let c = new Comment(comment.id, comment.body, comment.book_id, comment.username);
         c.renderComment();
@@ -135,6 +145,7 @@ function createNewBook() {
   const subject = document.getElementById('subject').value
   const review = document.getElementById('review').value
   const rating = document.getElementById('rating').value
+  const image = document.getElementById('image').value
 
   let book = {
     title: title,
@@ -146,7 +157,8 @@ function createNewBook() {
     poster_username: currentUser.username,
     poster_email: currentUser.email,
     poster_grade: currentUser.grade, 
-    likes: 0
+    likes: 0,
+    image: image
   }
 
   let configObj = {
@@ -161,7 +173,7 @@ function createNewBook() {
   fetch("http://localhost:3000/books", configObj)
     .then(resp => (resp.json()))
     .then(book => {
-      let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating, book.poster_username, book.poster_email, book.poster_grade, book.likes)
+      let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating, book.poster_username, book.poster_email, book.poster_grade, book.likes, book.image)
       b.renderBook();
     })
 }
@@ -172,8 +184,9 @@ function fetchBooks() {
   fetch("http://localhost:3000/books")
     .then(resp => resp.json())
     .then(books => {
+      books.sort((a, b) => a.id - b.id);
       for (const book of books) {
-        let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating, book.poster_username, book.poster_email, book.poster_grade, book.likes);
+        let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating, book.poster_username, book.poster_email, book.poster_grade, book.likes, book.image);
         b.renderBook();
       }
     })
