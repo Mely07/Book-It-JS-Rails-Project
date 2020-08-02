@@ -13,14 +13,14 @@ renderComment() {
 
     document.getElementById("commentsList").innerHTML += this.template;
 
-    document.getElementById("commentForm").style.display = "none";
-    document.getElementById("top").style.display = "block";
+    document.getElementById("commentForm").hidden = true;
+    document.getElementById("top").hidden = true;
 } 
 
 template =
     "<div id='commentsList' class='media text-muted pt-3'>" +
     "  <p class='media-body pb-3 mb-0 small lh-125 border-bottom border-gray'>" +
-    "    <strong class='d-block text-gray-dark'>USERNAME</strong>" +
+    "    <strong class='d-block text-gray-dark'>@USERNAME</strong>" +
     "     BODY " +
     "   </p>" +
     "</div>"

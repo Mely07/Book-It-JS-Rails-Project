@@ -29,8 +29,8 @@ class Book {
 
         document.getElementById("books").innerHTML += this.template;
 
-        document.getElementById("bookForm").style.display = "none";
-        document.getElementById("top").style.display = "block";
+        document.getElementById("bookForm").hidden = true;
+        document.getElementById("top").hidden = false;
     }
 
     template =

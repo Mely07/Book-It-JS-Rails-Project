@@ -1,41 +1,29 @@
 let currentUser = {};
 let currentBookId;
 
+
 document.addEventListener("DOMContentLoaded", () => {
   fetchBooks();
 
   //USER
   newUser.addEventListener("click", () => {
-    const userFormContainer = document.getElementById("userForm")
-    const topSectionContainer = document.getElementById("top")
-
-    if (userFormContainer.style.display === "none") {
-      userFormContainer.style.display = "block";
-      topSectionContainer.style.display = "none";
-    } else {
-      userFormContainer.style.display = "none";
-      topSectionContainer.style.display = "block"
-    }
+    document.getElementById("userForm").hidden = !document.getElementById("userForm").hidden 
+    document.getElementById("top").hidden = !document.getElementById("top").hidden;
   });
 
   //USER
   document.getElementById("submitNewUser").addEventListener("click", function (event) {
+    document.getElementById("newBook").hidden = false;
+    document.getElementById("newUser").hidden = true;
+
     event.preventDefault();
     assembleCurrentUser();
   });
 
   //BOOK
   newBook.addEventListener("click", () => {
-    const bookFormContainer = document.getElementById("bookForm")
-    const topSectionContainer = document.getElementById("top")
-
-    if (bookFormContainer.style.display === "none") {
-      bookFormContainer.style.display = "block";
-      topSectionContainer.style.display = "none";
-    } else {
-      bookFormContainer.style.display = "none";
-      topSectionContainer.style.display = "block"
-    }
+    document.getElementById("bookForm").hidden = !document.getElementById("bookForm").hidden;
+    document.getElementById("top").hidden = !document.getElementById("top").hidden;
   });
 
   //BOOK
@@ -51,23 +39,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //COMMENT
-  document.getElementById("closeComments").addEventListener("click", closeAllComments)
+  document.getElementById("closeComments").addEventListener("click", closeAllComments)  
+  
+  //USER && COMMENT
+  if (Object.keys(currentUser).length === 0) {
+     document.getElementById("newBook").hidden = true;
+     document.getElementById("newUser").hidden = false;
+  } 
 });  
-
+ 
 //COMMENT
 function newComment() {
-  const commentFormContainer = document.getElementById("commentForm")
-  const topSectionContainer = document.getElementById("top")
-
-  if (commentFormContainer.style.display === "none") {
-    commentFormContainer.style.display = "block";
-    topSectionContainer.style.display = "none";
-  } else {
-    commentFormContainer.style.display = "none";
-    topSectionContainer.style.display = "block"
-  }
+  document.getElementById("commentForm").hidden = !document.getElementById("commentForm").hidden
+  document.getElementById("top").hidden = !document.getElementById("top").hidden;
 }
-
 
 //COMMENT
 function createNewComment() {
@@ -111,16 +96,8 @@ function toggleComments(id) {
 
 //COMMENT
 function closeAllComments() {
-  const commentsDiv = document.getElementById("bookComments");
-  const booksDiv = document.getElementById("books");
-
-  if (commentsDiv.style.display === "none") {
-    booksDiv.style.display = "none";
-    commentsDiv.style.display = "";
-  } else {
-    commentsDiv.style.display = "none";
-    booksDiv.style.display = "";
-  }
+  document.getElementById("bookComments").hidden = !document.getElementById("bookComments").hidden;
+  document.getElementById("books").hidden = !document.getElementById("books").hidden;
 }
 
 
@@ -223,6 +200,6 @@ function assembleCurrentUser() {
 
   document.getElementById("interName").innerHTML = currentUser.username;
 
-  document.getElementById("userForm").style.display = "none";
-  document.getElementById("top").style.display = "block";
+  document.getElementById("userForm").hidden = true;
+  document.getElementById("top").hidden = false;
 }
