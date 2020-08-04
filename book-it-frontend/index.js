@@ -45,9 +45,20 @@ document.addEventListener("DOMContentLoaded", () => {
   if (Object.keys(currentUser).length === 0) {
      document.getElementById("newBook").hidden = true;
      document.getElementById("newUser").hidden = false;
-  } 
-});  
- 
+  }; 
+
+  document.getElementById("getSubject").addEventListener("click", () => {
+    let selSubject = document.getElementById("selectSubject");
+    let subject = (selSubject[selSubject.selectedIndex].value)
+
+    fetchBooks(subject)
+  })
+
+  
+})
+
+
+
 //COMMENT
 function newComment() {
   document.getElementById("commentForm").hidden = !document.getElementById("commentForm").hidden
@@ -156,17 +167,28 @@ function createNewBook() {
 }
 
 //BOOK
-function fetchBooks() {
+function fetchBooks(subject) {
   document.getElementById("books").innerHTML = '';
   fetch("http://localhost:3000/books")
     .then(resp => resp.json())
     .then(books => {
+      if (subject) {
+        let filteredBooks = books.filter(book => book.subject == subject);
+        console.log(filteredBooks)
+        filteredBooks.sort((a, b) => a.id - b.id);
+        for (const book of filteredBooks) {
+          let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating, book.poster_username, book.poster_email, book.poster_grade, book.likes, book.image);
+          b.renderBook();
+        }
+      }
+      else {
       books.sort((a, b) => a.id - b.id);
       for (const book of books) {
         let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating, book.poster_username, book.poster_email, book.poster_grade, book.likes, book.image);
         b.renderBook();
       }
-    })
+    }
+  })
 }
 
 //BOOK

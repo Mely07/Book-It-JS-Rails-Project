@@ -34,19 +34,19 @@ class Book {
     }
 
     template =
-    "<div class='col-md-4'>"+
-    "  <div class='card mb-4 shadow-sm'>"+
+    "<div class='col-md-4' style='padding: 8px'>"+
+    "  <div class='card shadow-sm'>"+
 
-    "<img class='card-img-top'  style='height:" +
-    "225px; width: 100%; display: block;' src='IMAGE' data-holder-rendered='true'></img>" +
-  // "<img IMAGE class='card-img-top' alt='Responsive image'>"+
+    // "<img class='card-img-top'  style='height:" +
+    // "225px; width: 100%; display: block;' src='IMAGE' data-holder-rendered='true'></img>" +
+    // "<img src='IMAGE' class='card-img-top' alt='Responsive image' data-holder-rendered='true'>"+
   
-    "    <div class='card-body'>"+
-    "      <strong class='d-inline-block mb-2 text-primary'>AUTHOR</strong>"+
-    "      <h3 class='mb-0'>TITLE</h3>"+
+    "    <div class='card-body overflow-auto' style='padding: 15px'"+
+    "      <h4 class='mb-0'>TITLE</h4>"+
+    "      <strong class='d-inline-block mb-1 text-success'>AUTHOR</strong>"+
     "      <div class='text-muted'>Rating: RATING/5</div>"+
     "      <p class='card-text mb-1 mt-3'>REVIEW</p>"+
-    "      <div class='text-muted mb-2'>Posted by: USERNAME, EMAIL, GRADE grade</div>"+
+    "      <div class='text-muted mb-2'>USERNAME, EMAIL, GRADE grade</div>"+
     "      <div class='d-flex justify-content-between align-items-center mt-2'>"+
     "        <div>"+
     "          <button id='comments' type='button' class='btn btn-sm btn-outline-secondary'onclick='toggleComments(BOOKID)'>Comments</button>"+

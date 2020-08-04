@@ -9,9 +9,10 @@
   <meta name="generator" content="Jekyll v4.0.1">
   <title>Book-It</title>
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
-
   <!-- Bootstrap core CSS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -20,7 +21,7 @@
       padding-top: 3rem;
       padding-bottom: 3rem;
       margin-bottom: 0;
-      background-color: #fff;
+      background-image: url("https://image.freepik.com/free-photo/different-size-books-bookshelf-blue-background-education-knowledge-reading-back-school-theme_78240-70.jpg")
     }
 
     @media (min-width: 768px) {
@@ -36,6 +37,7 @@
 
     .jumbotron h1 {
       font-weight: 300;
+      color: white;
     }
 
     .jumbotron .container {
@@ -107,11 +109,9 @@
     <section id="top" class="jumbotron text-center">
       <div class="container">
         <h1>Hi there,<span id=interName> name</span>!</h1>
-        <p class="lead text-muted">Know of a good studying resource/test-prep book? Share it for others to see by
+        <p class="lead text-muted">Know of a good studying resource/test-prep book?<br>Share it for others to see by
           booking-it here.
-        </p>
-        <h5>Happy studying!</h5>
-        <p>
+        <br>
           <a href="#" id="newUser" class="btn btn-warning my-2" hidden>New User</a>
           <a href="#" id="newBook" class="btn btn-warning my-2" hidden>Add Book</a>
           <!--<button class="btn btn-secondary my-2" type="submit" >Submit</button>-->
@@ -150,7 +150,6 @@
         <input type="text" id="image" name="image"><br>
         <br>
         <input class="btn btn-warning" type="submit" value="Submit" id="submitNewBook">
-        
       </form>
     </div>
 
@@ -164,7 +163,20 @@
     </div>
 
     <div class="album py-5 bg-light">
+      
       <div class="container">
+        <div class="form-group">
+          <select class="custom-select col-md-4 form-row" id="selectSubject" required>
+            <option value="">Filter by Subject</option>
+            <option value="Math">Math</option>
+            <option value="Science">Science</option>
+            <option value="History">History</option>
+            <option value="Technology">Technology</option>
+            <option value="Language">Language</option>
+          </select>
+          <div class="invalid-feedback">Example invalid custom select feedback</div>&nbsp;
+          <a href="#" id="getSubject" class="btn btn-outline-warning btn-sm"> Submit</a>
+        </div>
         <div id="books" class="row">
         </div>
         <div id="bookComments" class="row" hidden>
