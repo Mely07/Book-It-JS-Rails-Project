@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchBooks();
 
   //USER
-  newUser.addEventListener("click", () => {
+  newUser.addEventListener("click", (event) => {
+    event.preventDefault();
     document.getElementById("userForm").hidden = !document.getElementById("userForm").hidden 
     document.getElementById("top").hidden = !document.getElementById("top").hidden;
   });
@@ -21,7 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //BOOK
-  newBook.addEventListener("click", () => {
+  newBook.addEventListener("click", (event) => {
+    event.preventDefault();
     document.getElementById("bookForm").hidden = !document.getElementById("bookForm").hidden;
     document.getElementById("top").hidden = !document.getElementById("top").hidden;
   });
@@ -39,7 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //COMMENT
-  document.getElementById("closeComments").addEventListener("click", closeAllComments)  
+  document.getElementById("closeComments").addEventListener("click", (event) => {
+    event.preventDefault();
+    closeAllComments();
+  })  
   
   //USER && COMMENT
   if (Object.keys(currentUser).length === 0) {
@@ -47,7 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
      document.getElementById("newUser").hidden = false;
   }; 
 
-  document.getElementById("getSubject").addEventListener("click", () => {
+  document.getElementById("getSubject").addEventListener("click", (event) => {
+    event.preventDefault();
     let selSubject = document.getElementById("selectSubject");
     let subject = (selSubject[selSubject.selectedIndex].value)
 
@@ -114,6 +120,8 @@ function closeAllComments() {
 
 //COMMENT
 function fetchComments(id) {
+  document.getElementById("dropDown").hidden = !document.getElementById("dropDown").hidden;
+
   fetch("http://localhost:3000/books/" + id + "/comments")
     .then(resp => resp.json())
     .then(comments => {
@@ -168,6 +176,8 @@ function createNewBook() {
 
 //BOOK
 function fetchBooks(subject) {
+  document.getElementById("dropDown").hidden = !document.getElementById("dropDown").hidden;
+
   document.getElementById("books").innerHTML = '';
   fetch("http://localhost:3000/books")
     .then(resp => resp.json())
@@ -220,8 +230,10 @@ function assembleCurrentUser() {
   currentUser.email = document.getElementById('email').value
   currentUser.grade = document.getElementById('grade').value
 
-  document.getElementById("interName").innerHTML = currentUser.username;
-
+  if (currentUser){
+  document.getElementById("interName").hidden = !document.getElementById("interName").hidden;
+  document.getElementById("interName").innerHTML = ', ' + currentUser.username;
+  }
   document.getElementById("userForm").hidden = true;
   document.getElementById("top").hidden = false;
 }
