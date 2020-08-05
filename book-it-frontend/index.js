@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //BOOK
   newBook.addEventListener("click", (event) => {
     event.preventDefault();
+    
     document.getElementById("bookForm").hidden = !document.getElementById("bookForm").hidden;
     document.getElementById("top").hidden = !document.getElementById("top").hidden;
   });
@@ -41,7 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     else {
       createNewBook();
+      
     }
+    document.getElementById("bookFormId").reset();
   });
 
   //COMMENT
@@ -53,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     else {
       createNewComment();
     }
+    document.getElementById("commentFormId").reset();
   });
 
   //COMMENT
@@ -253,6 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("interName").hidden = !document.getElementById("interName").hidden;
       document.getElementById("interName").innerHTML = ', ' + currentUser.username;
     }
+    
     document.getElementById("userForm").hidden = true;
     document.getElementById("top").hidden = false;
   }

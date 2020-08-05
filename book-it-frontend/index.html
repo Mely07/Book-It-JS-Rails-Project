@@ -133,7 +133,7 @@
     </div>
 
     <div id="bookForm" class="container" hidden>
-      <form>
+      <form id="bookFormId">
         <label for="title">Title:</label><br>
         <input type="text" id="title" name="title"><br>
         <label for="author">Author:</label><br>
@@ -150,7 +150,7 @@
             <option value="Language">Language</option>
         </select><br>
         <label for="review">Review:</label><br>
-        <input type="text" id="review" name="review"><br>
+        <textarea type="text" id="review" name="review"></textarea><br>
         <label for="rating">Rating:</label><br>
         <input type="integer" id="rating" name="rating"><br>
         <label for="Image">Image:</label><br>
@@ -161,9 +161,9 @@
     </div>
 
     <div id="commentForm" class="container" hidden>
-      <form>
-        <label for="body">Comment here:</label><br>
-        <input type="textarea" id="body" name="body"><br>
+      <form id="commentFormId">
+        <label for="body">Your Comment Here:</label><br>
+        <textarea class="form-control" rows="3" id="body" name="body"></textarea><br>
         <br>
         <input class="btn btn-warning" type="submit" value="Submit" id="submitNewComment">
       </form>
