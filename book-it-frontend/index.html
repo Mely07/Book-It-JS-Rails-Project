@@ -106,7 +106,7 @@
 
   <main role="main">
 
-    <section id="top" class="jumbotron text-center">
+    <section id="top" class="jumbotron text-center" hidden>
       <div class="container">
         <h1>Hi there<span id=interName hidden></span>!</h1>
         <p class="lead text-muted">Know of a good studying resource/test-prep book?<br>Share it for others to see by
@@ -141,7 +141,14 @@
         <label for="publisher">Publisher:</label><br>
         <input type="text" id="publisher" name="publisher"><br>
         <label for="subject">Subject:</label><br>
-        <input type="text" id="subject" name="subject"><br>
+        <select class="custom-select col-md-2 form-row" id="subject" required>
+            <option value="">Choose one...</option>
+            <option value="Math">Math</option>
+            <option value="Science">Science</option>
+            <option value="History">History</option>
+            <option value="Technology">Technology</option>
+            <option value="Language">Language</option>
+        </select><br>
         <label for="review">Review:</label><br>
         <input type="text" id="review" name="review"><br>
         <label for="rating">Rating:</label><br>
@@ -178,7 +185,7 @@
           <a href="" id="getSubject" class="btn btn-outline-warning btn-sm"> Submit</a>
         </div>
 
-        <div id="books" class="row">
+        <div id="books" class="row" >
         </div>
         <div id="bookComments" class="row" hidden>
           <div class='col-md-12'>
@@ -188,7 +195,7 @@
                 
               </div>
               <small class='d-block text-right mt-3'>
-                <a href='' onclick='newComment()'>Add Comment</a>
+                <a id="newComment" href=''>Add Comment</a>
               </small>
               <small class='d-block text-right mt-3'>
                 <a id='closeComments' href=''>Close</a>

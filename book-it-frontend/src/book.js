@@ -41,7 +41,7 @@ class Book {
     // "225px; width: 100%; display: block;' src='IMAGE' data-holder-rendered='true'></img>" +
     // "<img src='IMAGE' class='card-img-top' alt='Responsive image' data-holder-rendered='true'>"+
   
-    "    <div class='card-body overflow-auto' style='padding: 15px'"+
+    "    <div class='card-body overflow-auto' style='padding: 15px;max-height: 11.8rem;'"+
     "      <h4 class='mb-0'>TITLE</h4>"+
     "      <strong class='d-inline-block mb-1 text-success'>AUTHOR</strong>"+
     "      <div class='text-muted'>Rating: RATING/5</div>"+
