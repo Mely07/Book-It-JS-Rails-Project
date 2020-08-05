@@ -154,8 +154,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //BOOK
   function createNewBook() {
-    const title = document.getElementById('title').value
-    const author = document.getElementById('author').value
+    const title = document.getElementById('title').value.split(' ').map(w => w.substring(0,1).toUpperCase()+w.substring(1)).join(' ');
+    const author = document.getElementById('author').value.split(' ').map(w => w.substring(0,1).toUpperCase()+w.substring(1)).join(' ');
     const publisher = document.getElementById('publisher').value
     const subject = document.getElementById('subject').value
     const review = document.getElementById('review').value
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //BOOK
   function fetchBooks(subject) {
-    document.getElementById("dropDown").hidden = !document.getElementById("dropDown").hidden;
+    document.getElementById("dropDown").hidden = false;
 
     document.getElementById("books").innerHTML = '';
     fetch("http://localhost:3000/books")

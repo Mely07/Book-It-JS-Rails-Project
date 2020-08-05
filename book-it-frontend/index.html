@@ -71,6 +71,12 @@
         font-size: 3.5rem;
       }
     }
+    a:hover{
+      text-decoration: none;
+    }
+    a{
+      color: green;
+    }
   </style>
   <script type="text/javascript" src="index.js"></script>
   <script type="text/javascript" src="src/book.js"></script>
@@ -109,8 +115,8 @@
     <section id="top" class="jumbotron text-center" hidden>
       <div class="container">
         <h1>Hi there<span id=interName hidden></span>!</h1>
-        <p class="lead text-muted">Know of a good studying resource/test-prep book?<br>Share it for others to see by
-          booking-it here.
+        <p class="lead text-muted">Know of a good test-prep book?<br>Share it with others by
+          booking-it here!
         <br>
           <a href="" id="newUser" class="btn btn-warning my-2" hidden>New User</a>
           <a href="" id="newBook" class="btn btn-warning my-2" hidden>Add Book</a>
@@ -126,7 +132,14 @@
         <label for="email">E-mail:</label><br>
         <input type="text" id="email" name="email"><br>
         <label for="grade">Grade:</label><br>
-        <input type="integer" id="grade" name="grade"><br>
+        <select class="custom-select col-md-2 form-row" id="grade" required>
+          <option value="">Choose one...</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+      </select>
+        <br>
         <br>
         <input class="btn btn-warning" type="submit" value="Submit" id="submitNewUser">
       </form>
@@ -152,7 +165,15 @@
         <label for="review">Review:</label><br>
         <textarea type="text" id="review" name="review"></textarea><br>
         <label for="rating">Rating:</label><br>
-        <input type="integer" id="rating" name="rating"><br>
+        <select class="custom-select col-md-2 form-row" id="rating" required>
+            <option value="">Choose one...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br>
         <label for="Image">Image:</label><br>
         <input type="text" id="image" name="image"><br>
         <br>
@@ -182,10 +203,10 @@
             <option value="Language">Language</option>
           </select>
           <div class="invalid-feedback">Example invalid custom select feedback</div>&nbsp;
-          <a href="" id="getSubject" class="btn btn-outline-warning btn-sm"> Submit</a>
+          <a href="" id="getSubject" class="btn btn-warning btn-sm"> Submit</a>
         </div>
 
-        <div id="books" class="row" >
+        <div id="books" class="row">
         </div>
         <div id="bookComments" class="row" hidden>
           <div class='col-md-12'>
@@ -213,7 +234,6 @@
       <p class="float-right">
         <a href="">Back to top</a>
       </p>
-      <p>xxxxxxxxxxxxxxxxxxxxxx</p>
     </div>
   </footer>
 
