@@ -10,9 +10,15 @@
   <title>Book-It</title>
 
   <!-- Bootstrap core CSS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -71,10 +77,12 @@
         font-size: 3.5rem;
       }
     }
-    a:hover{
+
+    a:hover {
       text-decoration: none;
     }
-    a{
+
+    a {
       color: green;
     }
   </style>
@@ -96,7 +104,7 @@
     </div>
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container d-flex justify-content-between">
-        <a href="file:///Users/damely/Desktop/Development/code/book-it-project/book-it-frontend/index.html" class="navbar-brand d-flex align-items-center">
+        <div class="navbar-brand d-flex align-items-center">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-book mr-2" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
@@ -104,8 +112,8 @@
             <path fill-rule="evenodd"
               d="M12.786 1.072C11.188.752 9.084.71 7.646 2.146A.5.5 0 0 0 7.5 2.5v11a.5.5 0 0 0 .854.354c.843-.844 2.115-1.059 3.47-.92 1.344.14 2.66.617 3.452 1.013A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.276-.447L15.5 2.5l.224-.447-.002-.001-.004-.002-.013-.006-.047-.023a12.582 12.582 0 0 0-.799-.34 12.96 12.96 0 0 0-2.073-.609zM15 2.82v9.908c-.846-.343-1.944-.672-3.074-.788-1.143-.118-2.387-.023-3.426.56V2.718c1.063-.929 2.631-.956 4.09-.664A11.956 11.956 0 0 1 15 2.82z" />
           </svg>
-          <strong>Home</strong>
-        </a>
+          <strong>Book It</strong>
+        </div>
       </div>
     </div>
   </header>
@@ -115,12 +123,11 @@
     <section id="top" class="jumbotron text-center" hidden>
       <div class="container">
         <h1>Hi there<span id=interName hidden></span>!</h1>
-        <p class="lead text-muted">Know of a good test-prep book?<br>Share it with others by
+        <p class="lead ">Know of a good test-prep book?<br>Share it with others by
           booking-it here!
-        <br>
+          <br>
           <a href="" id="newUser" class="btn btn-warning my-2" hidden>New User</a>
           <a href="" id="newBook" class="btn btn-warning my-2" hidden>Add Book</a>
-          <!--<button class="btn btn-secondary my-2" type="submit" >Submit</button>-->
         </p>
       </div>
     </section>
@@ -132,16 +139,19 @@
         <label for="email">E-mail:</label><br>
         <input type="text" id="email" name="email"><br>
         <label for="grade">Grade:</label><br>
-        <select class="custom-select col-md-2 form-row" id="grade" required>
+        <select class="custom-select col-md-2" id="grade" required>
           <option value="">Choose one...</option>
           <option value="9">9</option>
           <option value="10">10</option>
           <option value="11">11</option>
           <option value="12">12</option>
-      </select>
+        </select>
         <br>
         <br>
-        <input class="btn btn-warning" type="submit" value="Submit" id="submitNewUser">
+        <div class="mb-2">
+          <input class="btn btn-warning mr-2" type="submit" value="Submit" id="submitNewUser">
+          <input class="btn btn-warning" type="submit" value="Close" id="closeNewUser">
+        </div>
       </form>
     </div>
 
@@ -154,30 +164,31 @@
         <label for="publisher">Publisher:</label><br>
         <input type="text" id="publisher" name="publisher"><br>
         <label for="subject">Subject:</label><br>
-        <select class="custom-select col-md-2 form-row" id="subject" required>
-            <option value="">Choose one...</option>
-            <option value="Math">Math</option>
-            <option value="Science">Science</option>
-            <option value="History">History</option>
-            <option value="Technology">Technology</option>
-            <option value="Language">Language</option>
+        <select class="custom-select col-md-2" id="subject" required>
+          <option value="">Choose one...</option>
+          <option value="Math">Math</option>
+          <option value="Science">Science</option>
+          <option value="History">History</option>
+          <option value="Technology">Technology</option>
+          <option value="Language">Language</option>
         </select><br>
         <label for="review">Review:</label><br>
         <textarea type="text" id="review" name="review"></textarea><br>
         <label for="rating">Rating:</label><br>
-        <select class="custom-select col-md-2 form-row" id="rating" required>
-            <option value="">Choose one...</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+        <select class="custom-select col-md-2" id="rating" required>
+          <option value="">Choose one...</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
         <br>
-        <label for="Image">Image:</label><br>
-        <input type="text" id="image" name="image"><br>
         <br>
-        <input class="btn btn-warning" type="submit" value="Submit" id="submitNewBook">
+        <div class="mb-2">
+          <input class="btn btn-warning mr-2" type="submit" value="Submit" id="submitNewBook">
+          <input class="btn btn-warning" type="submit" value="Close" id="closeNewBook">
+        </div>
       </form>
     </div>
 
@@ -185,17 +196,20 @@
       <form id="commentFormId">
         <label for="body">Your Comment Here:</label><br>
         <textarea class="form-control" rows="3" id="body" name="body"></textarea><br>
-        <br>
-        <input class="btn btn-warning" type="submit" value="Submit" id="submitNewComment">
+        <div class="mb-2">
+          <input class="btn btn-warning mr-2" type="submit" value="Submit" id="submitNewComment">
+          <input class="btn btn-warning" type="submit" value="Close" id="closeNewComment">
+        </div>
       </form>
     </div>
 
     <div class="album py-5 bg-light">
-      
+
       <div class="container">
         <div class="form-group" id="dropDown" hidden>
+          <label for="selectSubject"></label>Filter by Subject:</label><br>
           <select class="custom-select col-md-4 form-row" id="selectSubject" required>
-            <option value="">Filter by Subject</option>
+            <option value="">All Books</option>
             <option value="Math">Math</option>
             <option value="Science">Science</option>
             <option value="History">History</option>
@@ -213,7 +227,7 @@
             <div class='p-3 bg-white rounded shadow-sm'>
               <h6 class='border-bottom border-gray pb-2 mb-0'>Comments</h6>
               <div id="commentsList">
-                
+
               </div>
               <small class='d-block text-right mt-3'>
                 <a id="newComment" href=''>Add Comment</a>
@@ -229,12 +243,6 @@
 
   </main>
 
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-right">
-        <a href="">Back to top</a>
-      </p>
-    </div>
-  </footer>
+  <footer></footer>
 
 </html>
