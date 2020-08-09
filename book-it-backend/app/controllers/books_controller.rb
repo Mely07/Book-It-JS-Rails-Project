@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
 
-    render json: @books
+    render json: @books.to_json(include: [:comments])
   end
 
   # GET /books/1

@@ -133,7 +133,7 @@ function createNewComment() {
 
     .then(resp => (resp.json()))
     .then(comment => {
-      let c = new Comment(comment.id, comment.body, comment.book_id, comment.username)
+      let c = new Comment(comment)
       c.renderComment();
     })
 }
@@ -166,7 +166,7 @@ function fetchComments(id) {
     .then(resp => resp.json())
     .then(comments => {
       for (const comment of comments) {
-        let c = new Comment(comment.id, comment.body, comment.book_id, comment.username);
+        let c = new Comment(comment);
         c.renderComment();
       }
     })
@@ -180,8 +180,6 @@ function createNewBook() {
   const subject = document.getElementById('subject').value
   const review = document.getElementById('review').value
   const rating = document.getElementById('rating').value
-
-  //title.required = true
 
   let book = {
     title: title,
@@ -208,7 +206,7 @@ function createNewBook() {
   fetch("http://localhost:3000/books", configObj)
     .then(resp => (resp.json()))
     .then(book => {
-      let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating, book.poster_username, book.poster_email, book.poster_grade, book.likes, book.image)
+      let b = new Book(book)
       b.renderBook();
     })
 }
@@ -221,19 +219,20 @@ function fetchBooks(subject) {
   fetch("http://localhost:3000/books")
     .then(resp => resp.json())
     .then(books => {
+      //console.log(books)
       if (subject) {
         let filteredBooks = books.filter(book => book.subject == subject);
-        console.log(filteredBooks)
+        //console.log(filteredBooks)
         filteredBooks.sort((a, b) => a.id - b.id);
         for (const book of filteredBooks) {
-          let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating, book.poster_username, book.poster_email, book.poster_grade, book.likes, book.image);
+          let b = new Book(book);
           b.renderBook();
         }
       }
       else {
         books.sort((a, b) => a.id - b.id);
         for (const book of books) {
-          let b = new Book(book.id, book.title, book.author, book.publisher, book.subject, book.review, book.rating, book.poster_username, book.poster_email, book.poster_grade, book.likes, book.image);
+          let b = new Book(book);
           b.renderBook();
         }
       }
@@ -241,7 +240,8 @@ function fetchBooks(subject) {
 }
 
 //BOOK
-function likeBook(id) {
+function likeBook(event, id) {
+  event.preventDefault();
   fetch("http://localhost:3000/books/" + id)
     .then(resp => resp.json())
     .then(json => {
