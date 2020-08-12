@@ -3,9 +3,9 @@ class BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.all
+  books = Book.all
 
-    render json: @books.to_json(include: [:comments])
+    render json: books.to_json(include: [:comments])
   end
 
   # GET /books/1
@@ -15,12 +15,12 @@ class BooksController < ApplicationController
 
   # POST /books
   def create
-    @book = Book.new(book_params)
+    book = Book.new(book_params)
 
-    if @book.save
-      render json: @book, status: :created, location: @book
+    if book.save
+      render json: book, status: :created, location: book
     else
-      render json: @book.errors, status: :unprocessable_entity
+      render json: book.errors, status: :unprocessable_entity
     end
   end
 
