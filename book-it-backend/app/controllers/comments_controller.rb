@@ -5,14 +5,14 @@ class CommentsController < ApplicationController
   def index
     if params[:book_id]
       if Book.find_by(id: params[:book_id])
-      @comments = Book.find_by(id: params[:book_id]).comments
+      comments = Book.find_by(id: params[:book_id]).comments
       # else
       end
     else
-      @comments = Comment.all
+      comments = Comment.all
     end
 
-    render json: @comments
+    render json: comments
   end
 
   # GET /comments/1
@@ -22,12 +22,12 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
+    comment = Comment.new(comment_params)
 
-    if @comment.save
-      render json: @comment, status: :created, location: @comment
+    if comment.save
+      render json: comment, status: :created, location: comment
     else
-      render json: @comment.errors, status: :unprocessable_entity
+      render json: comment.errors, status: :unprocessable_entity
     end
   end
 

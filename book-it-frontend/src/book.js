@@ -128,24 +128,24 @@ class Book {
     static likeBook(event, id) {
         event.preventDefault();
         fetch("http://localhost:3000/books/" + id)
-            .then(resp => resp.json())
-            .then(json => {
-                let formData = {
-                    "likes": json.likes + 1
-                };
-
-                let configObj = {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-                    body: JSON.stringify(formData)
-                };
-
-                fetch("http://localhost:3000/books/" + id, configObj)
-                    .then(() => Book.fetchBooks())
-            })
-    }
+          .then(resp => resp.json())
+          .then(json => {
+            let formData = {
+              "likes": json.likes + 1
+            };
+      
+            let configObj = {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+              body: JSON.stringify(formData)
+            };
+      
+            fetch("http://localhost:3000/books/" + id, configObj)
+              .then(() => this.fetchBooks())
+          })
+      }
 }
 

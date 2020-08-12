@@ -121,3 +121,4 @@ function assembleCurrentUser() {
   document.getElementById("userForm").hidden = true;
   document.getElementById("top").hidden = false;
 }
+

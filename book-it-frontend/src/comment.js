@@ -74,17 +74,15 @@ class Comment {
             })
     }
 
-    //COMMENT
     static toggleComments(id) {
         (event) => {
             event.preventDefault()
         };
         currentBookId = id;
-        Comment.fetchComments(id);
-        Comment.closeAllComments();
+        this.fetchComments(id);
+        this.closeAllComments();
     }
 
-    //COMMENT
     static closeAllComments() {
         document.getElementById("comments").innerHTML = '';
         document.getElementById("bookComments").hidden = !document.getElementById("bookComments").hidden;
