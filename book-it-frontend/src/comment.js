@@ -1,17 +1,17 @@
 class Comment {
-    static all = [];
+    //static all = [];
 
     constructor(comment) {
         this.id = comment.id,
-            this.body = comment.body,
-            this.book_id = comment.book_id,
-            this.username = comment.username,
-            this.save();
+        this.body = comment.body,
+        this.book_id = comment.book_id,
+        this.username = comment.username
+        // this.save();
     }
 
-    save() {
-        Comment.all.push(this);
-    };
+    // save() {
+    //     Comment.all.push(this);
+    // };
 
     renderComment() {
         this.template = this.template.replace("USERNAME", this.username);
@@ -63,7 +63,6 @@ class Comment {
 
     static fetchComments(id) {
         document.getElementById("commentsList").innerHTML = '';
-        console.log(document.getElementById("commentsList").innerHTML)
         fetch("http://localhost:3000/books/" + id + "/comments")
             .then(resp => resp.json())
             .then(comments => {
