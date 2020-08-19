@@ -1,5 +1,5 @@
 let currentUser = {};
-let currentBookId;
+let currentBookId; 
 
 document.addEventListener("DOMContentLoaded", () => {
   Book.fetchBooks();
@@ -83,15 +83,15 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   //USER && COMMENT
-  if (Object.keys(currentUser).length === 0) {
-    document.getElementById("newBook").hidden = true;
-    document.getElementById("newUser").hidden = false;
-  };
+  // if (Object.keys(currentUser).length === 0) {
+  //   document.getElementById("newBook").hidden = true;
+  //   document.getElementById("newUser").hidden = false;
+  // };
 
-  document.getElementById("getSubject").addEventListener("click", (event) => {
+  document.getElementById("getSubject").addEventListener("click", (event) => { //submit button
     event.preventDefault();
     let selSubject = document.getElementById("selectSubject");
-    let subject = (selSubject[selSubject.selectedIndex].value)
+    let subject = (selSubject[selSubject.selectedIndex].value) //assigning selected dropdown value to subject var
 
     Book.fetchBooks(subject)
   })
@@ -104,6 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
     else {
       document.getElementById("commentForm").hidden = !document.getElementById("commentForm").hidden
     }
+  });
+
+  document.getElementById("alphabetize").addEventListener("click", (event) => {
+    event.preventDefault();
+    Book.fetchBooksSorted();
   });
 });
 

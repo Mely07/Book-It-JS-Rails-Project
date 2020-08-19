@@ -1,5 +1,5 @@
 class Book {
-    static all = [];
+    // static all = [];
 
     constructor(book) {
         this.id = book.id;
@@ -14,12 +14,12 @@ class Book {
         this.poster_grade = book.poster_grade;
         this.likes = book.likes;
         this.image = book.image;
-        this.save();
+        // this.save();
     }
 
-    save() {
-        Book.all.push(this);
-    };
+    // save() {
+    //     Book.all.push(this);
+    // };
 
     renderBook() {
         this.template = this.template.replace("TITLE", this.title);
@@ -27,13 +27,13 @@ class Book {
         this.template = this.template.replace("REVIEW", this.review);
         this.template = this.template.replace("RATING", this.rating);
         this.template = this.template.replace("LIKES", this.likes);
-        this.template = this.template.replace(/BOOKID/g, this.id);
+        this.template = this.template.replace(/BOOKID/g, this.id); //allows for global replacement 
 
         this.template = this.template.replace("USERNAME", this.poster_username);
         this.template = this.template.replace("EMAIL", this.poster_email);
         this.template = this.template.replace("GRADE", this.poster_grade);
 
-        document.getElementById("books").innerHTML += this.template;
+        document.getElementById("books").innerHTML += this.template; // append book to books div
 
         document.getElementById("bookForm").hidden = true;
         document.getElementById("top").hidden = false;
@@ -89,10 +89,10 @@ class Book {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify(book)
+            body: JSON.stringify(book) //converts obj to JSON (string)
         }
 
-        fetch("http://localhost:3000/books", configObj)
+        fetch("http://localhost:3000/books", configObj) 
             .then(resp => (resp.json()))
             .then(book => {
                 let b = new Book(book)
@@ -127,7 +127,8 @@ class Book {
 
     static likeBook(event, id) {
         event.preventDefault();
-        fetch("http://localhost:3000/books/" + id)
+        
+        fetch("http://localhost:3000/books/" + id) 
           .then(resp => resp.json())
           .then(json => {
             let formData = {
@@ -143,9 +144,25 @@ class Book {
               body: JSON.stringify(formData)
             };
       
-            fetch("http://localhost:3000/books/" + id, configObj)
+            fetch("http://localhost:3000/books/" + id, configObj) 
               .then(() => this.fetchBooks())
           })
       }
+
+    static fetchBooksSorted(){
+        document.getElementById("dropDown").hidden = false;
+        document.getElementById("books").innerHTML = '';
+        
+        fetch("http://localhost:3000/books")
+            .then(resp => resp.json())
+            .then(books => {
+                books.sort((a, b) => (a.title > b.title)? 1 : -1);
+            
+                for (const book of books) {
+                    let b = new Book(book);
+                    b.renderBook();
+                }
+        })
+    }
 }
 
